@@ -520,7 +520,7 @@
             <div class="slider">
               <div class="siema">
                 <a href="https://www.kommersant.ru/doc/4298583" class="slider_wrapper" target="_blank">
-                  <img class="image slider_image" src="./movie.jpg"/>
+                  <img class="image" src="./movie.jpg"/>
 
                   <div class="slider_group">
                     <div class="slider_text">
@@ -534,7 +534,7 @@
                 </a>
 
                 <a href="https://www.kommersant.ru/doc/4302424" class="slider_wrapper" target="_blank">
-                  <img class="image slider_image" src="./music.jpg"/>
+                  <img class="image" src="./music.jpg"/>
 
                   <div class="slider_group">
                     <div class="slider_text">
@@ -548,7 +548,7 @@
                 </a>
 
                 <a href="https://www.kommersant.ru/doc/4268999" class="slider_wrapper" target="_blank">
-                  <img class="image slider_image" src="./events.jpg"/>
+                  <img class="image" src="./events.jpg"/>
 
                   <div class="slider_group">
                     <div class="slider_text">
@@ -577,7 +577,7 @@
 
             <div class="container_1">
               <a href="https://www.kommersant.ru/doc/4299695" class="block_1" target="_blank">
-                <div class="block_1_wrapper">
+                <div class="block_1_out">
                   <img class="image" src="./shoping.jpg" />
                 </div>
 
@@ -595,7 +595,7 @@
               </a>
 
               <a href="https://www.kommersant.ru/doc/4300629" class="block_1" target="_blank">
-                <div class="block_1_wrapper">
+                <div class="block_1_out">
                   <img class="image" src="./beauty.jpg" />
                 </div>
 
@@ -636,7 +636,6 @@
             <div class="container_2">
               <a href="https://www.kommersant.ru/doc/4235693" class="block_3" target="_blank">
                 <img class="image photo_1" src="./fly.jpg" />
-
                 <div class="group_1">
                   <p class="desc">
                     Улёт
@@ -653,7 +652,8 @@
               </a>
 
               <a href="https://www.kommersant.ru/doc/4252193" class="block_3" target="_blank">
-                <img class="image photo_1" src="./design.png" />
+
+                <img class="image photo_1" src="./design.jpg" />
 
                 <div class="group_1">
                   <p class="desc">
@@ -673,7 +673,7 @@
 
             <div class="container_3">
               <a href="https://www.kommersant.ru/doc/4196412" class="block_1" target="_blank">
-                <div class="block_1_wrapper">
+                <div class="block_1_out">
                   <img class="image" src="./thr.png" />
                 </div>
 
@@ -722,11 +722,11 @@
                     Светская хроника
                   </p>
 
-                  <p class="title_1 font_bold title_2">
+                  <p class="title_1 title_2">
                     Балет Монте-Карло впервые в Новосибирске
                   </p>
 
-                  <p class="text_2 font_regular text_3">
+                  <p class="text_2 text_3">
                     В гастролях принимают участие звезды Большого театра
                   </p>
                 </div>
@@ -800,6 +800,7 @@
                 top: 2rem;
                 left: 1rem;
                 width: 80%;
+                z-index: 1;
               }
 
               .slider_text {
@@ -830,16 +831,22 @@
                 padding-top: calc(5 / 4 * 100%);
               }
 
-              .slider_image {
+              .slider_wrapper:after {
+                content: '';
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
                 height: 100%;
-                object-fit: cover;
+                background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+                z-index: 0;
               }
 
               .buttons {
+                z-index: 1;
                 text-transform: uppercase;
                 display: flex;
                 position: absolute;
-                color: #fafafa;
                 bottom: 48px;
                 left: 1rem;
               }
@@ -849,6 +856,13 @@
                 padding-bottom: 8px;
                 border-bottom: 1px solid #fafafa;
                 cursor: pointer;
+                color: #fafafa;
+                transition: color 0.2s, border-bottom 0.2s;
+              }
+
+              .button:hover {
+                color: #FFCB05;
+                border-bottom: 2px solid #FFCB05;
               }
 
               .active {
@@ -857,6 +871,7 @@
               }
 
               .image {
+                background-color: #777;
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -925,13 +940,13 @@
                 transition: border-bottom 0.2s;
               }
 
-              .block_1_wrapper {
+              .block_1_out {
                 position: relative;
                 overflow: hidden;
                 margin-bottom: 16px;
               }
 
-              .block_1_wrapper:before {
+              .block_1_out:before {
                 content: '';
                 display: block;
                 padding-top: calc(2 / 3 * 100%);
@@ -974,11 +989,30 @@
                 padding-top: calc(4 / 3 * 100%);
               }
 
+              .block_2_wrapper:after, .block_3_wrapper:after, .block_3:after {
+                 content: '';
+                 position: absolute;
+                 left: 0;
+                 right: 0;
+                 bottom: 0;
+                 height: 100%;
+                 background: #000;
+                 opacity: 0.3;
+                 z-index: 0;
+                 transition: 0.5s;
+              }
+
+              .block_3:hover:after, .block_2_wrapper:hover::after {
+                opacity: 0.5;
+                transition: all 0.5s;
+              }
+
               .group_1 {
                 position: absolute;
                 bottom: 1rem;
                 left: 1rem;
                 color: #fafafa;
+                z-index: 1;
               }
 
               .block_4 {
@@ -992,6 +1026,7 @@
                 cursor: pointer;
                 border-bottom: 2px solid #141414;
                 padding: 1rem 1rem 1rem 0;
+                transition: border-bottom 0.2s;
               }
 
               .heading:hover {
@@ -999,6 +1034,7 @@
               }
 
               .block_2_image {
+                background-color: #777;
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -1006,6 +1042,10 @@
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
+              }
+
+              .container_4 {
+                margin-bottom: 48px;
               }
 
               @media (min-width: 979px) {
@@ -1085,7 +1125,7 @@
                   margin-bottom: 0;
                 }
 
-                .block_1_wrapper:before {
+                .block_1_out:before {
                   display: none;
                 }
 
@@ -1099,7 +1139,6 @@
                   font-size: 60px;
                   line-height: 72px;
                 }
-
 
                 .block_3_wrapper {
                   position: relative;
@@ -1197,7 +1236,6 @@
                   margin-bottom: 0;
                 }
 
-
                 .desc_2 {
                   margin-bottom: 21px;
                 }
@@ -1207,6 +1245,7 @@
                   grid-template-columns: 1fr 1fr 1fr;
                   grid-column-gap: 30px;
                   margin-left: -45px;
+                  margin-bottom: 96px;
                 }
 
                 .wrapper:not(:last-child) {
@@ -1400,7 +1439,20 @@
   <script src="https://cdn.jsdelivr.net/npm/siema@1.5.1/dist/siema.min.js"></script>
 
   <script>
-  	const mySiema = new Siema();
+
+    function activeSlide () {
+      let active = this.currentSlide
+      const buttons = [btn1, btn2, btn3]
+
+      buttons.forEach((slide, i) => {
+        const addOrRemove = i === this.currentSlide ? 'add' : 'remove';
+        buttons[i].classList[addOrRemove]('active');
+      })
+    }
+
+  	const mySiema = new Siema({
+      onChange: activeSlide
+    });
 
   	const btn1 = document.querySelector('.btn1');
   	const btn2 = document.querySelector('.btn2');
