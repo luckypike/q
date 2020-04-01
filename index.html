@@ -863,6 +863,7 @@
               }
 
               .button {
+                position: relative;
                 margin-right: 30px;
                 padding-bottom: 8px;
                 border-bottom: 1px solid #fafafa;
@@ -878,7 +879,25 @@
 
               .active {
                 color: #FFCB05;
+              }
+
+              .active:before {
+                position: absolute;
+                bottom: -1px;
                 border-bottom: 2px solid #FFCB05;
+                content: '';
+                display: block;
+                animation: right 5s forwards;
+              }
+
+              @keyframes right {
+                0% {
+                  width: 0;
+                }
+
+                100% {
+                  width: 100%;
+                }
               }
 
               .image {
@@ -1255,6 +1274,7 @@
 
                 .c_3 {
                   grid-column: span 2;
+                  margin-bottom: 0;
                 }
 
                 .block_3 {
@@ -1466,7 +1486,7 @@
   <script>
     const glide = new Glide('.glide' , {
       type: 'carousel',
-      autoplay: 10000,
+      autoplay: 5000,
       hoverpause: true,
       gap: 0
     })
