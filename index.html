@@ -59,6 +59,8 @@
 
   <link rel="stylesheet" href="https://im.kommersant.ru/ContentFlex/css/print_version.css" charset="utf-8" media="print" />
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glidejs@2.1.0/dist/css/glide.core.css" />
+
   <script src="https://im.kommersant.ru/ContentFlex/js/jquery.js"></script>
   <script src="https://im.kommersant.ru/ContentFlex/js/jquery.slider.js"></script>
   <script src="https://im.kommersant.ru/ContentFlex/js/thirdparty.js"></script>
@@ -518,58 +520,62 @@
             </div>
 
             <div class="slider">
-              <div class="siema">
-                <a href="https://www.kommersant.ru/doc/4298583" class="slider_wrapper" target="_blank">
-                  <img class="image" src="./movie.jpg"/>
+              <div class="glide">
+                <div class="glide__track" data-glide-el="track">
+                  <div class="glide__slides slides">
+                    <a href="https://www.kommersant.ru/doc/4298583" class="slider_wrapper" target="_blank">
+                      <img class="image" src="./movie.jpg"/>
 
-                  <div class="slider_group">
-                    <div class="slider_text">
-                      «Королевство», «Фрейд», «Белгравия» и другие новые сериалы
-                    </div>
+                      <div class="slider_group">
+                        <div class="slider_text">
+                          «Королевство», «Фрейд», «Белгравия» и другие новые сериалы
+                        </div>
 
-                    <div class="slider_desc">
-                      Выбор Татьяны Алешичевой
-                    </div>
+                        <div class="slider_desc">
+                          Выбор Татьяны Алешичевой
+                        </div>
+                      </div>
+                    </a>
+
+                    <a href="https://www.kommersant.ru/doc/4302424" class="slider_wrapper" target="_blank">
+                      <img class="image" src="./music.jpg"/>
+
+                      <div class="slider_group">
+                        <div class="slider_text">
+                          Архивные записи спектаклей онлайн
+                        </div>
+
+                        <div class="slider_desc">
+                          Выбор Ольги Федяниной
+                        </div>
+                      </div>
+                    </a>
+
+                    <a href="https://www.kommersant.ru/doc/4268999" class="slider_wrapper" target="_blank">
+                      <img class="image" src="./events.jpg"/>
+
+                      <div class="slider_group">
+                        <div class="slider_text">
+                          Краткий путеводитель по вселенной Стивена Кинга
+                        </div>
+
+                        <div class="slider_desc">
+                          Для тех, кому лень его читать
+                        </div>
+                      </div>
+                    </a>
                   </div>
-                </a>
-
-                <a href="https://www.kommersant.ru/doc/4302424" class="slider_wrapper" target="_blank">
-                  <img class="image" src="./music.jpg"/>
-
-                  <div class="slider_group">
-                    <div class="slider_text">
-                      Архивные записи спектаклей онлайн
-                    </div>
-
-                    <div class="slider_desc">
-                      Выбор Ольги Федяниной
-                    </div>
-                  </div>
-                </a>
-
-                <a href="https://www.kommersant.ru/doc/4268999" class="slider_wrapper" target="_blank">
-                  <img class="image" src="./events.jpg"/>
-
-                  <div class="slider_group">
-                    <div class="slider_text">
-                      Краткий путеводитель по вселенной Стивена Кинга
-                    </div>
-
-                    <div class="slider_desc">
-                      Для тех, кому лень его читать
-                    </div>
-                  </div>
-                </a>
+                </div>
               </div>
 
-              <div class="buttons">
-                <div class="button btn1 active">
+              <div class="glide__bullets buttons" data-glide-el="controls[nav]">
+                <div class="button btn1 active" data-glide-dir="=0">
                   Кино
                 </div>
-                <div class="button btn2">
+                <div class="button btn2" data-glide-dir="=1">
                   Музыка
                 </div>
-                <div class="button btn3">
+                <div class="button btn3" data-glide-dir="=2">
                   События
                 </div>
               </div>
@@ -806,11 +812,12 @@
               }
 
               .slider_text {
-                width: 80%;
+                width: 85%;
                 color: #fafafa;
                 margin-bottom: 24px;
                 font-size: 34px;
                 line-height: 36px;
+                text-transform: uppercase;
               }
 
               .slider_desc {
@@ -1077,6 +1084,10 @@
 
               .container_4 {
                 margin-bottom: 48px;
+              }
+
+              .slides {
+                display: flex;
               }
 
               @media (min-width: 979px) {
@@ -1450,32 +1461,34 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/siema@1.5.1/dist/siema.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
 
   <script>
+    const glide = new Glide('.glide' , {
+      type: 'carousel',
+      autoplay: 10000,
+      hoverpause: true,
+      gap: 0
+    })
 
-    function activeSlide () {
-      let active = this.currentSlide
+    glide.on(['mount.after', 'run'], () => {
+      let active = glide.index
+      const btn1 = document.querySelector('.btn1');
+      const btn2 = document.querySelector('.btn2');
+      const btn3 = document.querySelector('.btn3');
       const buttons = [btn1, btn2, btn3]
 
+      btn1.addEventListener('click', () => glide.go('=0'));
+      btn2.addEventListener('click', () => glide.go('=1'));
+      btn3.addEventListener('click', () => glide.go('=2'));
+
       buttons.forEach((slide, i) => {
-        const addOrRemove = i === this.currentSlide ? 'add' : 'remove';
+        const addOrRemove = i === active ? 'add' : 'remove';
         buttons[i].classList[addOrRemove]('active');
       })
-    }
+    })
 
-  	const mySiema = new Siema({
-      onChange: activeSlide
-    });
-
-  	const btn1 = document.querySelector('.btn1');
-  	const btn2 = document.querySelector('.btn2');
-  	const btn3 = document.querySelector('.btn3');
-
-  	btn1.addEventListener('click', () => mySiema.goTo(0));
-  	btn2.addEventListener('click', () => mySiema.goTo(1));
-  	btn3.addEventListener('click', () => mySiema.goTo(2));
+    glide.mount()
   </script>
-
 </body>
 </html>
