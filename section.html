@@ -487,32 +487,50 @@
 
           <div class="article_text_wrapper">
             <div class="header">
-              <img class="logo" src="./logo.svg" />
+              <a href="./index.html">
+                <img class="logo" src="./logo.svg" />
+              </a>
 
               <ul class="navs">
                 <li class="nav">
-                  Shopping
+                  <a href="./section.html">
+                    Shopping
+                  </a>
                 </li>
                 <li class="nav">
-                  Beauty
+                  <a href="./section.html">
+                    Beauty
+                  </a>
                 </li>
                 <li class="nav">
-                  Рестораны
+                  <a href="./section.html">
+                    Рестораны
+                  </a>
                 </li>
                 <li class="nav">
-                  Улёт
+                  <a href="./section.html">
+                    Улёт
+                  </a>
                 </li>
                 <li class="nav">
-                  Интерьеры
+                  <a href="./section.html">
+                    Интерьеры
+                  </a>
                 </li>
                 <li class="nav">
-                  Афиша
+                  <a href="./section.html">
+                    Афиша
+                  </a>
                 </li>
                 <li class="nav">
-                  Дети
+                  <a href="./section.html">
+                    Дети
+                  </a>
                 </li>
                 <li class="nav">
-                  Мероприятия
+                  <a href="./section.html">
+                    Мероприятия
+                  </a>
                 </li>
               </ul>
             </div>
@@ -618,7 +636,7 @@
                 </div>
               </a>
 
-              <a href="https://www.kommersant.ru/doc/4293257" class="block">
+              <a href="https://www.kommersant.ru/doc/4274788" class="block">
                 <div>
                   <div class="image">
                     <img src="./restaurants.jpg" />
@@ -663,9 +681,12 @@
 
               .navs {
                 display: flex;
-                flex-wrap: wrap;
                 line-height: 24px;
                 font-size: 16px;
+                overflow-x: auto;
+                overflow-y: hidden;
+                white-space: nowrap;
+                list-style: none;
               }
 
               .nav {
@@ -674,6 +695,11 @@
                 cursor: pointer;
                 box-shadow: inset 0 0 #fff;
                 transition: box-shadow 0.3s;
+              }
+
+              .nav a {
+                display: block;
+                color: #000;
               }
 
               .nav:hover {
@@ -686,10 +712,12 @@
                 font-weight: 900;
                 font-size: 40px;
                 line-height: 48px;
+                margin-bottom: 48px;
               }
 
               .image {
                 overflow: hidden;
+                margin-bottom: 8px;
               }
 
               .image img {
@@ -704,6 +732,7 @@
 
               .container {
                 display: block;
+                margin-bottom: 48px;
               }
 
               .desc {
@@ -777,8 +806,7 @@
                 }
 
                 .container {
-                  margin-bottom: 96px;
-                  margin-left: -45px;
+                  margin: 0 -15px 96px -60px;
                 }
 
                 .image {
@@ -791,7 +819,7 @@
 
                 .header_title {
                   margin-left: -45px;
-                  margin-bottom: 24px;
+                  margin-bottom: 72px;
                 }
 
                 .text {
@@ -979,8 +1007,7 @@
   <script>
     let magicGrid = new MagicGrid({
       container: '.container',
-      animate: true,
-      gutter: 20,
+      gutter: 30,
       static: true,
       useMin: true,
       maxColumns: 3,
