@@ -59,8 +59,6 @@
 
   <link rel="stylesheet" href="https://im.kommersant.ru/ContentFlex/css/print_version.css" charset="utf-8" media="print" />
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glidejs@2.1.0/dist/css/glide.core.css" />
-
   <script src="https://im.kommersant.ru/ContentFlex/js/jquery.js"></script>
   <script src="https://im.kommersant.ru/ContentFlex/js/jquery.slider.js"></script>
   <script src="https://im.kommersant.ru/ContentFlex/js/thirdparty.js"></script>
@@ -818,6 +816,38 @@
               }
             </style>
 
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glidejs@2.1.0/dist/css/glide.core.css" />
+            <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+
+            <script type="text/javascript">
+              const glide = new Glide('.glide' , {
+                type: 'carousel',
+                autoplay: 5000,
+                hoverpause: true,
+                gap: 0
+              })
+
+              glide.on(['mount.after', 'run'], () => {
+                let active = glide.index
+                const btn1 = document.querySelector('.btn1');
+                const btn2 = document.querySelector('.btn2');
+                const btn3 = document.querySelector('.btn3');
+                const buttons = [btn1, btn2, btn3]
+
+                btn1.addEventListener('click', () => glide.go('=0'));
+                btn2.addEventListener('click', () => glide.go('=1'));
+                btn3.addEventListener('click', () => glide.go('=2'));
+
+                buttons.forEach((slide, i) => {
+                  const addOrRemove = i === active ? 'add' : 'remove';
+                  buttons[i].classList[addOrRemove]('active');
+                })
+              })
+
+              glide.mount()
+            </script>
+
+
             <div class="container_1">
               <a href="https://www.kommersant.ru/doc/4300035" class="block_1">
                 <div class="block_1_out">
@@ -1550,34 +1580,5 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
-
-  <script>
-    const glide = new Glide('.glide' , {
-      type: 'carousel',
-      autoplay: 5000,
-      hoverpause: true,
-      gap: 0
-    })
-
-    glide.on(['mount.after', 'run'], () => {
-      let active = glide.index
-      const btn1 = document.querySelector('.btn1');
-      const btn2 = document.querySelector('.btn2');
-      const btn3 = document.querySelector('.btn3');
-      const buttons = [btn1, btn2, btn3]
-
-      btn1.addEventListener('click', () => glide.go('=0'));
-      btn2.addEventListener('click', () => glide.go('=1'));
-      btn3.addEventListener('click', () => glide.go('=2'));
-
-      buttons.forEach((slide, i) => {
-        const addOrRemove = i === active ? 'add' : 'remove';
-        buttons[i].classList[addOrRemove]('active');
-      })
-    })
-
-    glide.mount()
-  </script>
 </body>
 </html>
