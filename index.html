@@ -581,15 +581,22 @@
                 box-shadow: inset 0 -7px #FFCB05;
               }
 
-              @media (min-width: 979px) {
+              @media screen and (min-width: 980px) {
                 .q6rx_header {
                   display: flex;
+                  width: 960px;
                   align-items: center;
                 }
 
                 .q6rx_logo {
                   margin-right: 75px;
                   margin-bottom: 0;
+                }
+              }
+
+              @media only screen and (min-width: 1200px), not screen {
+                .q6rx_header {
+                  width: 1140px;
                 }
               }
             </style>
@@ -846,7 +853,6 @@
 
               glide.mount()
             </script>
-
 
             <div class="container_1">
               <a href="https://www.kommersant.ru/doc/4300035" class="block_1">
@@ -1575,10 +1581,8 @@
             <div class="main_footer_copyright">&copy; 1991–2020 АО «Коммерсантъ»<span class="main_footer_copyright__add hide1 hide2">. All rights reserved</span></div>
           </footer>
         </div>
-
       </div>
     </div>
   </div>
-
 </body>
 </html>
